@@ -6,40 +6,40 @@ class Followers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      followers: [],
+      following: [],
     };
   }
 
   componentDidMount() {
     fetch(
-      `https://api.github.com/users/${this.props.params.username}/followers`
+      `https://api.github.com/users/${this.props.params.username}/following`
     )
       .then((response) => response.json())
-      .then((followers) => {
+      .then((followingList) => {
         // How can we use `this` inside a callback without binding it??
         // Make sure you understand this fundamental difference with arrow functions!!!
         this.setState({
-          followers: followers,
+          followingList: followingList,
         });
       });
   }
 
   render() {
-    if (!this.state.followers) {
+    if (!this.state.followingList) {
       return <div>LOADING...</div>;
     }
 
     return (
-      <div className="followers-page">
+      <div className="following-page">
         <hr />
-        <h2>Followers of {this.props.params.username}</h2>
+        <h2>Followed by {this.props.params.username}</h2>
         <ul className="follow-list">
-          {this.state.followers.map(function (follower) {
+          {this.state.followingList.map(function (following) {
             return (
               <GithubUser
-                key={follower.login}
-                login={follower.login}
-                avatar_url={follower.avatar_url}
+                key={following.login}
+                login={following.login}
+                avatar_url={following.avatar_url}
               />
             );
           })}
