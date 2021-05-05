@@ -7,6 +7,10 @@ class User extends React.Component {
     this.state = {};
   }
 
+  //   fetchData() {
+
+  //   }
+
   /*
     This method will be called by React after the first render. It's a perfect place to load
     data with AJAX. This User component gets mounted in the DOM as soon as the URL is /user/:username
