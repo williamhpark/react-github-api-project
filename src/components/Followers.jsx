@@ -1,5 +1,7 @@
 import React from "react";
 
+import GithubUser from "./GithubUser.jsx";
+
 class Followers extends React.Component {
   constructor(props) {
     super(props);
@@ -24,12 +26,22 @@ class Followers extends React.Component {
   }
 
   render() {
+    if (!this.state.followers) {
+      return <div>LOADING FOLLOWERS...</div>;
+    }
+
     return (
       <div className="followers-page">
-        <h3>Followers of USERNAME</h3>
+        <h2>Followers of {this.props.params.username}</h2>
         <ul>
           {this.state.followers.map(function (follower) {
-            return <li>{follower.login}</li>;
+            return (
+              <GithubUser
+                key={follower.login}
+                login={follower.login}
+                avatar_url={follower.avatar_url}
+              />
+            );
           })}
         </ul>
       </div>
