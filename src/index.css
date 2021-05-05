@@ -18,6 +18,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #555555;
+}
+
 .main-header {
   background-color: #222;
   color: #fff;
@@ -124,4 +128,13 @@ a {
   vertical-align: middle;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.repos-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.github-repo {
+  margin: 3px 0;
 }

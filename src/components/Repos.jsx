@@ -1,6 +1,6 @@
 import React from "react";
 
-import GithubUser from "./GithubUser.jsx";
+import GithubRepo from "./GithubRepo.jsx";
 
 class Repos extends React.Component {
   constructor(props) {
@@ -11,9 +11,7 @@ class Repos extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      `https://api.github.com/users/${this.props.params.username}/repos`
-    )
+    fetch(`https://api.github.com/users/${this.props.params.username}/repos`)
       .then((response) => response.json())
       .then((repos) => {
         // How can we use `this` inside a callback without binding it??
@@ -26,21 +24,21 @@ class Repos extends React.Component {
   }
 
   render() {
-    if (!this.state.followers) {
-      return <div>LOADING FOLLOWERS...</div>;
+    if (!this.state.repos) {
+      return <div>LOADING...</div>;
     }
 
     return (
-      <div className="followers-page">
+      <div className="repos-page">
         <hr />
-        <h2>Followers of {this.props.params.username}</h2>
-        <ul className="follower-list">
-          {this.state.followers.map(function (follower) {
+        <h2>Repos of {this.props.params.username}</h2>
+        <ul className="repos-list">
+          {this.state.repos.map(function (repo) {
             return (
-              <GithubUser
-                key={follower.login}
-                login={follower.login}
-                avatar_url={follower.avatar_url}
+              <GithubRepo
+                key={repo.name}
+                name={repo.name}
+                html_url={repo.html_url}
               />
             );
           })}
@@ -50,4 +48,4 @@ class Repos extends React.Component {
   }
 }
 
-export default Followers;
+export default Repos;
