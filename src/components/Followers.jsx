@@ -32,8 +32,9 @@ class Followers extends React.Component {
 
     return (
       <div className="followers-page">
+        <hr />
         <h2>Followers of {this.props.params.username}</h2>
-        <ul>
+        <ul className="follower-list">
           {this.state.followers.map(function (follower) {
             return (
               <GithubUser

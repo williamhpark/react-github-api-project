@@ -8,7 +8,7 @@ class GithubUser extends React.Component {
 
   render() {
     return (
-      <Link to={`/user/${this.props.login}`}>
+      <Link className="github-user" to={`/user/${this.props.login}`}>
         <img src={`${this.props.avatar_url}`} alt={`${this.props.login}`} />
         {this.props.login}
       </Link>
