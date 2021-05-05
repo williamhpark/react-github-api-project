@@ -2,15 +2,16 @@
 What is this sorcery?? Importing a CSS file in JavaScript?
 Make sure you understand what's going on here!!!
 */
-import './index.css';
+import "./index.css";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router, Route, IndexRoute, browserHistory } from "react-router";
 
-import App from './components/App';
-import Search from './components/Search';
-import User from './components/User';
+import App from "./components/App";
+import Search from "./components/Search";
+import User from "./components/User";
+import Followers from "./components/Followers";
 
 /*
 Rendering a router will output the right component tree based on the current URL.
@@ -21,12 +22,14 @@ If the URL is /user/ziad-saab then <App/> will be rendered, and this.props.child
 The <User/> instance will be passed a prop called `params`. It will be an object with `{username: 'ziad-saab'}`
 */
 const routes = (
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={Search}/>
-            <Route path="user/:username" component={User}/>
-        </Route>
-    </Router>
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={Search} />
+      <Route path="user/:username" component={User}>
+        <Route path="followers" component={Followers} />
+      </Route>
+    </Route>
+  </Router>
 );
 
-ReactDOM.render(routes, document.getElementById('root'));
+ReactDOM.render(routes, document.getElementById("root"));
